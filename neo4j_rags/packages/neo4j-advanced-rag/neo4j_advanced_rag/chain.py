@@ -5,6 +5,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.pydantic_v1 import BaseModel
 from langchain_core.runnables import ConfigurableField, RunnableParallel
 from langchain_openai import ChatOpenAI
+import os
 
 from neo4j_advanced_rag.retrievers import (
     hypothetic_question_vectorstore,
@@ -25,7 +26,7 @@ Question: {question}
 """
 prompt = ChatPromptTemplate.from_template(template)
 
-model = ChatOpenAI()
+model = ChatOpenAI(model=os.getenv('CHAT_MODEL_NAME'), openai_api_key=os.getenv('CHAT_MODEL_KEY'),openai_api_base=os.getenv('CHAT_MODEL_API_BASE'),temperature=0)
 
 retriever = typical_rag.as_retriever().configurable_alternatives(
     ConfigurableField(id="strategy"),
