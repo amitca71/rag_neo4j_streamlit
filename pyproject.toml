@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "rag-neo4j-streamlit"
+version = "0.1.0"
+description = "neo4j advanced rag. read from pdf and apply neo4j advanced RAG techniques"
+authors = ["amitca71 <amitca71@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+streamlit = "^1.37.1"
+PyPDF2 = "^3.0.1"
+langchain-cli = {extras = ["serve"], version = "^0.0.29"}
+langchain-openai = "^0.1.21"
+langchain-community = "^0.2.12"
+langchainhub = "^0.1.21"
+streamlit-feedback = "^0.1.3"
+langchain-google-genai = "^1.0.8"
+neo4j = "^5.23.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
