@@ -127,17 +127,17 @@ for i, parent in enumerate(parent_documents):
     questions=None
     try :
         questions = question_chain.invoke(parent.page_content).questions
+        params = {
+            "parent_id": i,
+            "questions": [
+                {"text": q, "id": f"{i}-{iq}", "embedding": embeddings.embed_query(q)}
+                for iq, q in enumerate(questions)
+                if q
+            ],
+        }
     except Exception as e:
         print (e)
         pass
-    params = {
-        "parent_id": i,
-        "questions": [
-            {"text": q, "id": f"{i}-{iq}", "embedding": embeddings.embed_query(q)}
-            for iq, q in enumerate(questions)
-            if q
-        ],
-    }
     try:
         graph.query(
             """
